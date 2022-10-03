@@ -1,0 +1,48 @@
+
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="pagelayout/layout">
+
+<div layout:fragment="content">
+	<form th:action="@{/view}" method="post" th:object="${employee}" enctype="multipart/form-data"
+		>
+		<div class="form-group">
+			<label for="email">Name</label> <input type="text"
+				class="form-control" placeholder="Enter name" id="email"
+				th:field="*{name}" required="required">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Email:</label> <input type="email"
+				class="form-control" placeholder="Enter email" id="pwd"
+				th:field="*{email}" required="required">
+		</div>
+		<div class="form-group">
+			<label for="pwd">Mobile:</label> <input type="text"
+				class="form-control" placeholder="Enter mobile" id="pwd"
+				maxlength="10" th:field="*{mobileNo}" required="required"
+				pattern="[789][0-9]{9}"
+				title="Phone number with 7-9 and remaing 9 digit with 0-9">
+		</div>
+
+		<div class="form-group">
+			<label for="pwd">Image</label> <input type="file"
+				class="form-control" name="imgpath"  onchange="readURL(this);" >
+		</div>
+		
+		<img id="previewer" src=""  alt="your image" />
+		
+		<div class="input-group mb-3">
+
+			<select class="custom-select" id="inputGroupSelect01"
+				th:field="*{department}" required="required">
+				<option selected th:value="''" th:text="choose">Choose...</option>
+				<option value="1" th:value="'IT'" th:text="IT">IT</option>
+				<option value="2" th:value="'Finance'" th:text="Finance">Finance</option>
+				<option value="3" th:value="'Tax'" th:text="Tax">Tax</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</div>
+</html>

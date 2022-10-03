@@ -1,0 +1,39 @@
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="pagelayout/layout">
+
+
+<div layout:fragment="content">
+	<h2>Employees</h2>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>SR No</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Mobile No</th>
+				<th>Department</th>
+				<th>Image</th>
+				<th>Operation</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="u, stat : ${employee}">
+				<th scope="row" th:text="${stat.count}">1</th>
+				<td th:text="${u.name}">Mark</td>
+				<td th:text="${u.email}">Otto</td>
+				<td th:text="${u.mobileNo}">@mdo</td>
+				<td th:text="${u.department}">@mdo</td>
+				<td><img  src="/image1.jpg"/ width="60px" height="60px"></td> <!-- th:src="@{${u.imagePath}}" -->
+				<td><a role="button" class="btn btn-primary"
+					th:href="@{/update/{id}(id=${u.id})}">Update</a>&nbsp;<a
+					role="button" class="btn btn-danger"
+					th:href="@{/delete/{id}(id=${u.id})}">Delete</a></td>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
+</html>
